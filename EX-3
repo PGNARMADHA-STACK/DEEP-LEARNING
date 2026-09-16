@@ -1,0 +1,48 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+class Perceptron:
+    def __init__(self, weights, bias):
+        self.weights = np.array(weights)
+        self.bias = bias
+
+    def predict(self, X):
+        net = np.dot(X, self.weights) + self.bias
+        return 1 if net >= 0 else 0
+
+
+weights = [-1, -1]
+bias = 0.5
+
+model = Perceptron(weights, bias)
+
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+])
+
+print("X1 X2 Output")
+
+for x in X:
+    print(x[0], x[1], model.predict(x))
+
+
+# Decision boundary
+x1 = np.linspace(-0.2, 1.2, 100)
+x2 = 0.5 - x1
+
+plt.figure()
+plt.plot(x1, x2, label="Decision Boundary")
+
+for x in X:
+    output = model.predict(x)
+    plt.scatter(x[0], x[1], label=f"Output {output}")
+
+plt.xlabel("X1")
+plt.ylabel("X2")
+plt.title("NOR Gate Decision Boundary")
+plt.grid()
+plt.legend()
+plt.show()
