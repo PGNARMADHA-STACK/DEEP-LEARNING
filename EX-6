@@ -1,0 +1,37 @@
+import numpy as np
+
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+])
+
+y = np.array([0, 1, 1, 1])
+
+learning_rate = 0.2
+weights = np.array([0.3, 0.1])
+bias = 0
+
+print("X1 X2 Net Output Error Updated Weights Updated Bias")
+
+for i in range(len(X)):
+
+    net = np.dot(X[i], weights) + bias
+
+    output = 1 if net >= 0 else 0
+
+    error = y[i] - output
+
+    weights = weights + learning_rate * error * X[i]
+    bias = bias + learning_rate * error
+
+    print(
+        X[i][0],
+        X[i][1],
+        round(net, 2),
+        output,
+        error,
+        weights,
+        round(bias, 2)
+    )
