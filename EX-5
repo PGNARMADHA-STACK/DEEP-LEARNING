@@ -1,0 +1,32 @@
+import numpy as np
+
+def step(x):
+    return 1 if x >= 0 else 0
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def relu(x):
+    return max(0, x)
+
+weights = [1, 1]
+bias = -0.5
+
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+])
+
+print("X1 X2 Step Sigmoid ReLU")
+
+for x in X:
+    net = np.dot(x, weights) + bias
+
+    print(
+        x[0], x[1],
+        step(net),
+        round(sigmoid(net), 4),
+        relu(net)
+    )
