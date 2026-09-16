@@ -1,0 +1,26 @@
+import numpy as np
+
+def step(x):
+    return 1 if x >= 0 else 0
+
+def test_gate(weights, bias):
+    X = np.array([
+        [0, 0],
+        [0, 1],
+        [1, 0],
+        [1, 1]
+    ])
+
+    for x in X:
+        net = np.dot(x, weights) + bias
+        output = step(net)
+        print(x, "->", output)
+
+print("AND")
+test_gate([1, 1], -1.5)
+
+print("\nOR")
+test_gate([1, 1], -0.5)
+
+print("\nNAND")
+test_gate([-1, -1], 1.5)
